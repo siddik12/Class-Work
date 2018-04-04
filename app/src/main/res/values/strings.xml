@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Employee MA D33</string>
+    <string-array name="city">
+        <item>Dhaka</item>
+        <item>Manikganj</item>
+        <item>Shylet</item>
+    </string-array>
+</resources>
