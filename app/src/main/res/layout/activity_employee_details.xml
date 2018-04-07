@@ -32,6 +32,12 @@
         tools:text="012541554" />
 
     <TextView
+        android:id="@+id/textViewCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Dhaka" />
+
+    <TextView
         android:id="@+id/textViewType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

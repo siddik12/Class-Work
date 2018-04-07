@@ -27,6 +27,7 @@
         android:hint="Enter Employee Phone"/>
 
     <EditText
+        android:id="@+id/editTextDOB"
         android:hint="Select DOB"
         android:onClick="showDOB"
         android:layout_width="match_parent"
@@ -35,7 +36,6 @@
 
     <Spinner
         android:id="@+id/spinner"
-        android:entries="@array/city"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

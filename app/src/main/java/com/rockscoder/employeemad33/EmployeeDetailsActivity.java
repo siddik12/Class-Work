@@ -12,7 +12,7 @@ import java.util.List;
 
 public class EmployeeDetailsActivity extends AppCompatActivity {
 
-    TextView textViewName, textViewAge,textViewGender, textViewPhone,textViewType, textViewSkills;
+    TextView textViewName,textViewCity, textViewAge,textViewGender, textViewPhone,textViewType, textViewSkills;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,7 @@ public class EmployeeDetailsActivity extends AppCompatActivity {
         textViewPhone = findViewById(R.id.textViewPhone);
         textViewType = findViewById(R.id.textViewType);
         textViewSkills = findViewById(R.id.textViewSkills);
+        textViewCity = findViewById(R.id.textViewCity);
 
         Intent i = getIntent();
         //String name = i.getStringExtra("name");
@@ -41,6 +42,7 @@ public class EmployeeDetailsActivity extends AppCompatActivity {
 
         String skills  = TextUtils.join(", ",employee.getSkills());
         textViewSkills.setText(skills);
+        textViewCity.setText(employee.getEmpCity());
 
     }
 }
