@@ -210,16 +210,25 @@ public class MainActivity extends AppCompatActivity {
 
     private void showCustomDialog() {
 
+        final String [] countries = {"Bangladesh","USA","Canada","Russia"};
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Welcome To Login Window");
         dialog.setIcon(R.drawable.ic_settings_black_24dp);
-        dialog.setMessage("Please login to create new employee");
-        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        dialog.setItems(countries, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                showToast(countries[which]);
+            }
+        });
+        //dialog.setMessage("Please login to create new employee");
+       /* dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 showToast("Msg "+which);
             }
-        });
+        });*/
+
+
         dialog.show();
     }
 }
