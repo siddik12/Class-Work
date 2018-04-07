@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,6 +25,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -211,15 +213,39 @@ public class MainActivity extends AppCompatActivity {
     private void showCustomDialog() {
 
         final String [] countries = {"Bangladesh","USA","Canada","Russia"};
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View v = inflater.inflate(R.layout.login_dialog_view,null);
+
+        final EditText editTextName = v.findViewById(R.id.editTextEmailDialog);
+        final EditText editTextPass = v.findViewById(R.id.editTextPasswordDialog);
+
+        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Welcome To Login Window");
         dialog.setIcon(R.drawable.ic_settings_black_24dp);
-        dialog.setItems(countries, new DialogInterface.OnClickListener() {
+
+        dialog.setView(v);
+
+        dialog.setPositiveButton("Login", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(editTextName.getText().toString().equals(EmployeeUtils.Authentication.EMAIL)
+                        && editTextPass.getText().toString().equals(EmployeeUtils.Authentication.PASSWORD)){
+                    showToast("Welcome");
+                }else{
+                    showToast("Error");
+                }
+            }
+        });
+        dialog.setCancelable(false);
+
+
+       /* dialog.setItems(countries, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 showToast(countries[which]);
             }
-        });
+        });*/
         //dialog.setMessage("Please login to create new employee");
        /* dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
