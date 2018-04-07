@@ -2,13 +2,12 @@ package com.rockscoder.employeemad33;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
@@ -45,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         editTextPhone = findViewById(R.id.editTextPhone);
         editTextDOB = findViewById(R.id.editTextDOB);
         spinner = findViewById(R.id.spinner);
+
+        isLoggedIn = getIntent().getBooleanExtra("isLoggedIn",false);
 
         genderRG = findViewById(R.id.genderRG);
 
@@ -178,6 +179,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.item_logout:
                 isLoggedIn = false;
+                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                intent.putExtra("isLoggedIn",false);
+                startActivity(intent);
+                finish();
                 break;
             case R.id.item_settings:
                 break;
