@@ -1,6 +1,8 @@
 package com.rockscoder.employeemad33;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -176,13 +178,14 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.item_login:
                 isLoggedIn = true;
+                showCustomDialog();
                 break;
             case R.id.item_logout:
                 isLoggedIn = false;
-                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                /*Intent intent = new Intent(MainActivity.this,LoginActivity.class);
                 intent.putExtra("isLoggedIn",false);
                 startActivity(intent);
-                finish();
+                finish();*/
                 break;
             case R.id.item_settings:
                 break;
@@ -203,5 +206,20 @@ public class MainActivity extends AppCompatActivity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showCustomDialog() {
+
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Welcome To Login Window");
+        dialog.setIcon(R.drawable.ic_settings_black_24dp);
+        dialog.setMessage("Please login to create new employee");
+        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                showToast("Msg "+which);
+            }
+        });
+        dialog.show();
     }
 }
