@@ -2,6 +2,7 @@ package com.rockscoder.employeemad33;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.io.Serializable;
@@ -31,15 +33,19 @@ import java.util.zip.Inflater;
 public class MainActivity extends AppCompatActivity {
 
     private EditText editTextName, editTextAge, editTextPhone;
-    private TextView textViewDOB;
+    private TextView textViewDOB,startTime,endTime;
     private List<String> skills = new ArrayList<>();
     private String gender = "Male";
+    private String startTimeData = "09:00 AM";
+    private String endTimeData = "05:00 PM";
     private String dob = "";
     private String city = "";
     private String empType = "Base Salaried Employee";
     private RadioGroup genderRG, employeeTypeRG;
     private Spinner spinner;
     private boolean isLoggedIn = false;
+    private int hour = 0;
+    private int minute = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         editTextAge = findViewById(R.id.editTextAge);
         editTextPhone = findViewById(R.id.editTextPhone);
         textViewDOB = findViewById(R.id.textViewDOB);
+        startTime = findViewById(R.id.startTime);
+        endTime = findViewById(R.id.endTime);
         spinner = findViewById(R.id.spinner);
 
         isLoggedIn = getIntent().getBooleanExtra("isLoggedIn",false);
@@ -98,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         String phone = editTextPhone.getText().toString();
 
 
-        Employee employee = new Employee(name, age, dob, gender, phone, empType, city, skills);
+        Employee employee = new Employee(name, age, dob, gender, phone, empType, city,startTimeData,endTimeData, skills);
 
         List<Employee> employeeArrayList = new ArrayList<>();
         employeeArrayList.add(employee);
@@ -261,8 +269,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startTime(View view) {
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                startTime.setText(hourOfDay+":"+minute);
+                startTimeData = hourOfDay+":"+minute;
+            }
+        }, hour, minute,false);
+        timePickerDialog.show();
     }
 
+
     public void endTime(View view) {
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                endTime.setText(hourOfDay+":"+minute);
+                endTimeData = hourOfDay+":"+minute;
+            }
+        }, hour, minute,false);
+
+        timePickerDialog.show();
     }
 }

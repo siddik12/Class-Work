@@ -48,4 +48,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Java, PHP" />
+
+    <TextView
+        android:id="@+id/textViewStartTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Java, PHP" />
+
+    <TextView
+        android:id="@+id/textViewEndTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Java, PHP" />
 </LinearLayout>

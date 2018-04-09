@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 public class EmployeeDetailsActivity extends AppCompatActivity {
 
-    TextView textViewName,textViewCity, textViewAge,textViewGender, textViewPhone,textViewType, textViewSkills;
+    TextView textViewName,textViewCity, textViewAge,textViewGender, textViewPhone,textViewType,textViewStartTime,textViewEndTime, textViewSkills;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,8 @@ public class EmployeeDetailsActivity extends AppCompatActivity {
         textViewType = findViewById(R.id.textViewType);
         textViewSkills = findViewById(R.id.textViewSkills);
         textViewCity = findViewById(R.id.textViewCity);
+        textViewStartTime = findViewById(R.id.textViewStartTime);
+        textViewEndTime = findViewById(R.id.textViewEndTime);
 
         Intent i = getIntent();
         //String name = i.getStringExtra("name");
@@ -34,7 +36,9 @@ public class EmployeeDetailsActivity extends AppCompatActivity {
         textViewAge.setText(employee.getEmpAge());
         textViewGender.setText(employee.getEmpGender());
         textViewType.setText(employee.getEmpType());
-        textViewPhone.setText(employee.getEmpPhone());
+        textViewStartTime.setText(employee.getEmpPhone());
+        textViewPhone.setText(employee.getStartTimeData());
+        textViewEndTime.setText(employee.getEndTimeData());
 
         String skills  = TextUtils.join(", ",employee.getSkills());
         textViewSkills.setText(skills);

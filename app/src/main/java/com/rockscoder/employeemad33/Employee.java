@@ -11,9 +11,11 @@ public class Employee implements Serializable{
     private String empPhone;
     private String empType;
     private String empCity;
+    private String startTimeData;
+    private String endTimeData;
     private List<String> skills;
 
-    public Employee(String empName, String empAge, String empDOB, String empGender, String empPhone, String empType, String empCity, List<String> skills) {
+    public Employee(String empName, String empAge, String empDOB, String empGender, String empPhone, String empType, String empCity, String startTimeData, String endTimeData, List<String> skills) {
         this.empName = empName;
         this.empAge = empAge;
         this.empDOB = empDOB;
@@ -21,6 +23,8 @@ public class Employee implements Serializable{
         this.empPhone = empPhone;
         this.empType = empType;
         this.empCity = empCity;
+        this.startTimeData = startTimeData;
+        this.endTimeData = endTimeData;
         this.skills = skills;
     }
 
@@ -66,5 +70,13 @@ public class Employee implements Serializable{
 
     public String getEmpCity() {
         return empCity;
+    }
+
+    public String getStartTimeData() {
+        return startTimeData;
+    }
+
+    public String getEndTimeData() {
+        return endTimeData;
     }
 }
