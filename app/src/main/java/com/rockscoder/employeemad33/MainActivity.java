@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.Serializable;
@@ -29,7 +30,8 @@ import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText editTextName, editTextAge, editTextPhone, editTextDOB;
+    private EditText editTextName, editTextAge, editTextPhone;
+    private TextView textViewDOB;
     private List<String> skills = new ArrayList<>();
     private String gender = "Male";
     private String dob = "";
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         editTextName = findViewById(R.id.editTextName);
         editTextAge = findViewById(R.id.editTextAge);
         editTextPhone = findViewById(R.id.editTextPhone);
-        editTextDOB = findViewById(R.id.editTextDOB);
+        textViewDOB = findViewById(R.id.textViewDOB);
         spinner = findViewById(R.id.spinner);
 
         isLoggedIn = getIntent().getBooleanExtra("isLoggedIn",false);
@@ -142,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                 new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        editTextDOB.setText(day + "/" + month + "/" + year);
+                        textViewDOB.setText(day + "/" + month + "/" + year);
                         dob = day + "/" + month + "/" + year;
                     }
                 }, year, month, day);
@@ -256,5 +258,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         dialog.show();
+    }
+
+    public void startTime(View view) {
+    }
+
+    public void endTime(View view) {
     }
 }
