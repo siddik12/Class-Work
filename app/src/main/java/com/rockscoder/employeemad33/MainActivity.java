@@ -33,7 +33,7 @@ import java.util.zip.Inflater;
 public class MainActivity extends AppCompatActivity {
 
     private EditText editTextName, editTextAge, editTextPhone;
-    private TextView textViewDOB,startTime,endTime;
+    private TextView textViewDOB, startTime, endTime;
     private List<String> skills = new ArrayList<>();
     private String gender = "Male";
     private String startTimeData = "09:00 AM";
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         endTime = findViewById(R.id.endTime);
         spinner = findViewById(R.id.spinner);
 
-        isLoggedIn = getIntent().getBooleanExtra("isLoggedIn",false);
+        isLoggedIn = getIntent().getBooleanExtra("isLoggedIn", false);
 
         genderRG = findViewById(R.id.genderRG);
 
@@ -106,21 +106,21 @@ public class MainActivity extends AppCompatActivity {
         String phone = editTextPhone.getText().toString();
 
 
-        Employee employee = new Employee(name, age, dob, gender, phone, empType, city,startTimeData,endTimeData, skills);
-
-        List<Employee> employeeArrayList = new ArrayList<>();
+        Employee employee = new Employee(name, age, dob, gender, phone, empType, city, startTimeData, endTimeData, skills);
+        Employee.addEmployeeToList(employee);
+        Intent intent = new Intent(this, EmployeeListActivity.class);
+        startActivity(intent);
+        /*List<Employee> employeeArrayList = new ArrayList<>();
         employeeArrayList.add(employee);
-
-        Intent intent = new Intent(this, EmployeeDetailsActivity.class);
+*/
+        /*Intent intent = new Intent(this, EmployeeDetailsActivity.class);
         //intent.putExtra("name", name);
         //intent.putExtra("age", age);
         //intent.putExtra("phone", phone);
-
-
         intent.putExtra("emp", (Serializable) employee);
         intent.putExtra("empList", (ArrayList<Employee>) employeeArrayList);
 
-        startActivity(intent);
+        startActivity(intent);*/
 
         //showToast(name);
         //showToast(age);
@@ -174,10 +174,10 @@ public class MainActivity extends AppCompatActivity {
         showToast("onPrepareOptionsMenu");
         MenuItem loginItem = menu.findItem(R.id.item_login);
         MenuItem logoutItem = menu.findItem(R.id.item_logout);
-        if(isLoggedIn){
+        if (isLoggedIn) {
             loginItem.setVisible(false);
             logoutItem.setVisible(true);
-        }else {
+        } else {
             loginItem.setVisible(true);
             logoutItem.setVisible(false);
         }
@@ -189,7 +189,6 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.item_login:
-                isLoggedIn = true;
                 showCustomDialog();
                 break;
             case R.id.item_logout:
@@ -202,16 +201,16 @@ public class MainActivity extends AppCompatActivity {
             case R.id.item_settings:
                 break;
             case R.id.item_red:
-                if(item.isChecked()){
+                if (item.isChecked()) {
                     item.setChecked(false);
-                }else {
+                } else {
                     item.setChecked(true);
                 }
                 break;
             case R.id.item_blue:
-                if(item.isChecked()){
+                if (item.isChecked()) {
                     item.setChecked(false);
-                }else {
+                } else {
                     item.setChecked(true);
                 }
                 break;
@@ -222,10 +221,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void showCustomDialog() {
 
-        final String [] countries = {"Bangladesh","USA","Canada","Russia"};
+        final String[] countries = {"Bangladesh", "USA", "Canada", "Russia"};
 
         LayoutInflater inflater = LayoutInflater.from(this);
-        View v = inflater.inflate(R.layout.login_dialog_view,null);
+        View v = inflater.inflate(R.layout.login_dialog_view, null);
 
         final EditText editTextName = v.findViewById(R.id.editTextEmailDialog);
         final EditText editTextPass = v.findViewById(R.id.editTextPasswordDialog);
@@ -239,10 +238,11 @@ public class MainActivity extends AppCompatActivity {
         dialog.setPositiveButton("Login", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if(editTextName.getText().toString().equals(EmployeeUtils.Authentication.EMAIL)
-                        && editTextPass.getText().toString().equals(EmployeeUtils.Authentication.PASSWORD)){
+                if (editTextName.getText().toString().equals(EmployeeUtils.Authentication.EMAIL)
+                        && editTextPass.getText().toString().equals(EmployeeUtils.Authentication.PASSWORD)) {
                     showToast("Welcome");
-                }else{
+                    isLoggedIn = true;
+                } else {
                     showToast("Error");
                 }
             }
@@ -273,10 +273,10 @@ public class MainActivity extends AppCompatActivity {
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                startTime.setText(hourOfDay+":"+minute);
-                startTimeData = hourOfDay+":"+minute;
+                startTime.setText(hourOfDay + ":" + minute);
+                startTimeData = hourOfDay + ":" + minute;
             }
-        }, hour, minute,false);
+        }, hour, minute, false);
         timePickerDialog.show();
     }
 
@@ -285,10 +285,10 @@ public class MainActivity extends AppCompatActivity {
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                endTime.setText(hourOfDay+":"+minute);
-                endTimeData = hourOfDay+":"+minute;
+                endTime.setText(hourOfDay + ":" + minute);
+                endTimeData = hourOfDay + ":" + minute;
             }
-        }, hour, minute,false);
+        }, hour, minute, false);
 
         timePickerDialog.show();
     }

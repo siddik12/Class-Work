@@ -5,4 +5,5 @@
         <item>Manikganj</item>
         <item>Shylet</item>
     </string-array>
+    <string name="title_activity_employee_list">EmployeeListActivity</string>
 </resources>

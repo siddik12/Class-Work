@@ -1,6 +1,7 @@
 package com.rockscoder.employeemad33;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Employee implements Serializable{
@@ -14,6 +15,8 @@ public class Employee implements Serializable{
     private String startTimeData;
     private String endTimeData;
     private List<String> skills;
+
+    private static List<Employee> employees = new ArrayList<>();
 
     public Employee(String empName, String empAge, String empDOB, String empGender, String empPhone, String empType, String empCity, String startTimeData, String endTimeData, List<String> skills) {
         this.empName = empName;
@@ -78,5 +81,13 @@ public class Employee implements Serializable{
 
     public String getEndTimeData() {
         return endTimeData;
+    }
+
+    public static List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public static void addEmployeeToList(Employee employee){
+        employees.add(employee);
     }
 }
